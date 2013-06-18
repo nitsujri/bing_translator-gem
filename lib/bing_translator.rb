@@ -57,7 +57,15 @@ class BingTranslator
     }
     result = result @detect_uri, params
 
-    Nokogiri.parse(result.body).xpath("//xmlns:string")[0].content.to_sym
+    begin
+      Nokogiri.parse(result.body).xpath("//xmlns:string")[0].content.to_sym
+    rescue => e
+      result.body
+    end
+  end
+
+  def to_en(text)
+    translate(text, :to => :en, :from => detect(text))
   end
 
   # format:   'audio/wav' [default] or 'audio/mp3'
