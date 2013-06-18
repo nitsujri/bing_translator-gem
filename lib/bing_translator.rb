@@ -42,7 +42,11 @@ class BingTranslator
     params[:from] = from unless from.empty?
     result = result @translate_uri, params
 
-    Nokogiri.parse(result.body).xpath("//xmlns:string")[0].content
+    begin
+      Nokogiri.parse(result.body).xpath("//xmlns:string")[0].content
+    rescue => e 
+      result.body
+    end
   end
 
   def detect(text)

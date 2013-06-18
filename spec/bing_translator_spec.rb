@@ -4,8 +4,8 @@ require File.join(File.dirname(__FILE__), '..', 'lib', 'bing_translator')
 describe BingTranslator do
   before(:each) do
     @message_en = "This message should be translated"
-    @translator = BingTranslator.new(ENV['BING_TRANSLATOR_TEST_CLIENT_ID'],
-      ENV['BING_TRANSLATOR_TEST_CLIENT_SECRET'])
+    @translator = BingTranslator.new('9aed4bfe-4259-4d9e-9ad8-8af9f97fb6ef',
+      'ybQDZnbmBHJ3FVqYQcYCgOTDBRCNcXFWI540oJ3QIM8')
   end
 
   it "should translate text" do

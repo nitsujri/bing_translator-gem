@@ -24,6 +24,6 @@ PLATFORMS
 
 DEPENDENCIES
   fuubar
-  json (~> 1.7.7)
+  json (>= 1.7.7, < 1.9)
   nokogiri (~> 1.5.9)
   rspec (~> 2.13.0)

@@ -9,5 +9,5 @@ Gem::Specification.new do |s|
   s.email       = 'ricky@elrod.me'
   s.files       = ["lib/bing_translator.rb"]
   s.add_dependency "nokogiri", "~> 1.5.9"
-  s.add_dependency "json", "~> 1.7.7"
+  s.add_dependency "json", ">= 1.7.7", "< 1.9"
 end
