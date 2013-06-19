@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
 # (c) 2011-present. Ricky Elrod <ricky@elrod.me>
+# Modified by Justin Louie http://github.com/nitsujri
 # Released under the MIT license.
+
 require 'rubygems'
 require 'bundler'
 Bundler.require(:default)
