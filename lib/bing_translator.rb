@@ -9,6 +9,7 @@ require 'net/http'
 require 'net/https'
 require 'nokogiri'
 require 'json'
+require_relative 'patches/string' 
 
 class BingTranslator
   TRANSLATE_URI = 'http://api.microsofttranslator.com/V2/Http.svc/Translate'
@@ -18,6 +19,9 @@ class BingTranslator
   SPEAK_URI = 'http://api.microsofttranslator.com/v2/Http.svc/Speak'
 
   def initialize(client_id, client_secret, skip_ssl_verify = false)
+    raise Exception.new("client_id: Need to be specified") if client_id.nil?
+    raise Exception.new("client_secret: Need to be specified") if client_secret.nil?
+
     @client_id = client_id
     @client_secret = client_secret
     @skip_ssl_verify = skip_ssl_verify
@@ -140,5 +144,12 @@ private
     raise "Authentication error: #{@access_token['error']}" if @access_token["error"]
     @access_token['expires_at'] = Time.now + @access_token['expires_in'].to_i
     @access_token
+  end
+
+  class << self
+    def to_en(text)
+      @@bing ||= BingTranslator.new('9aed4bfe-4259-4d9e-9ad8-8af9f97fb6ef', 'ybQDZnbmBHJ3FVqYQcYCgOTDBRCNcXFWI540oJ3QIM8')
+      @@bing.to_en(text)
+    end
   end
 end
