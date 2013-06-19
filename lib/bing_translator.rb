@@ -3,24 +3,29 @@
 # (c) 2011-present. Ricky Elrod <ricky@elrod.me>
 # Released under the MIT license.
 require 'rubygems'
-require 'cgi'
-require 'uri'
-require 'net/http'
-require 'net/https'
-require 'nokogiri'
-require 'json'
-require_relative 'patches/string' 
+require 'bundler'
+Bundler.require(:default)
+
+require_relative 'patches/string'
 
 class BingTranslator
+  include HTTParty
+
   TRANSLATE_URI = 'http://api.microsofttranslator.com/V2/Http.svc/Translate'
   DETECT_URI = 'http://api.microsofttranslator.com/V2/Http.svc/Detect'
   LANG_CODE_LIST_URI = 'http://api.microsofttranslator.com/V2/Http.svc/GetLanguagesForTranslate'
   ACCESS_TOKEN_URI = 'https://datamarket.accesscontrol.windows.net/v2/OAuth2-13'
   SPEAK_URI = 'http://api.microsofttranslator.com/v2/Http.svc/Speak'
 
-  def initialize(client_id, client_secret, skip_ssl_verify = false)
-    raise Exception.new("client_id: Need to be specified") if client_id.nil?
-    raise Exception.new("client_secret: Need to be specified") if client_secret.nil?
+  def initialize(client_id = nil, client_secret = nil, skip_ssl_verify = false)
+    #load the yml
+    # if rails check for the config in rails root
+    if client_id.nil? or client_secret.nil?
+      require 'yaml' #only if we need it
+      yml_file      = YAML.load_file(File.join(File.dirname(__FILE__), '..', 'config', 'bing_translator.yml'))
+      client_id     = yml_file["development"]["client_id"] if client_id.nil?
+      client_secret = yml_file["development"]["client_secret"] if client_secret.nil?
+    end
 
     @client_id = client_id
     @client_secret = client_secret
@@ -148,7 +153,7 @@ private
 
   class << self
     def to_en(text)
-      @@bing ||= BingTranslator.new('9aed4bfe-4259-4d9e-9ad8-8af9f97fb6ef', 'ybQDZnbmBHJ3FVqYQcYCgOTDBRCNcXFWI540oJ3QIM8')
+      @@bing ||= BingTranslator.new
       @@bing.to_en(text)
     end
   end

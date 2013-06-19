@@ -4,3 +4,5 @@ test.rb
 *.gem
 *.swp
 tmp/
+
+config/bing_translator.yml

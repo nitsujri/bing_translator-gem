@@ -1,5 +1,5 @@
 # encoding: utf-8
-require File.join(File.dirname(__FILE__), '..', '..', 'lib', 'bing_translator')
+require 'spec_helper'
 
 describe BingTranslator do
   before(:each) do
