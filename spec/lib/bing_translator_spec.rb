@@ -30,8 +30,20 @@ describe BingTranslator do
     result.should == @message_en
   end
 
+  describe "Chinese" do
+    it "should translate to traditional chinese" do 
+      result = "how are you".to_zh
+      result.should == "你好嗎"
+    end
+
+    it "should translate to simplified chinese" do
+      result = "how are you".to_zh(false)
+      result.should == "你好吗"
+    end
+  end
+
   it "should detect language by passed text" do
-    result = @translator.detect @message_en
+    result = @translator.detect @message_en 
     result.should == :en
 
     result = @translator.detect "Это сообщение должно быть переведено"
@@ -48,14 +60,14 @@ describe BingTranslator do
     result = @translator.speak "Это сообщение должно быть переведены", :language => 'ru'
     result.length.should > 1000
 
-    result = @translator.speak "Ce message devrait être traduit", :language => 'fr'
-    result.length.should > 1000
+  #   result = @translator.speak "Ce message devrait être traduit", :language => 'fr'
+  #   result.length.should > 1000
 
-    result = @translator.speak "Diese Meldung sollte übersetzt werden", :language => 'de'
-    result.length.should > 1000
+  #   result = @translator.speak "Diese Meldung sollte übersetzt werden", :language => 'de'
+  #   result.length.should > 1000
 
-    result = @translator.speak "Diese Meldung sollte übersetzt werden", :language => 'de', :format => 'audio/wav', :options => 'MaxQuality'
-    result.length.should > 1000
+  #   result = @translator.speak "Diese Meldung sollte übersetzt werden", :language => 'de', :format => 'audio/wav', :options => 'MaxQuality'
+  #   result.length.should > 1000
 
   end
 

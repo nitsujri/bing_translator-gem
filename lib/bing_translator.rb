@@ -75,10 +75,6 @@ class BingTranslator
     end
   end
 
-  def to_en(text)
-    translate(text, :to => :en, :from => detect(text))
-  end
-
   # format:   'audio/wav' [default] or 'audio/mp3'
   # language: valid translator language code
   # options:  'MinSize' [default] or 'MaxQuality'
@@ -102,7 +98,8 @@ class BingTranslator
   end
 
 
-private
+  private #################### PRIVATE FUNCTS
+
   def prepare_param_string(params)
     params.map { |key, value| "#{key}=#{value}" }.join '&'
   end
@@ -153,10 +150,4 @@ private
     @access_token
   end
 
-  class << self
-    def to_en(text)
-      @@bing ||= BingTranslator.new
-      @@bing.to_en(text)
-    end
-  end
 end
