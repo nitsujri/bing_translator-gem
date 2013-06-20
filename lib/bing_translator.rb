@@ -23,9 +23,9 @@ class BingTranslator
     # if rails check for the config in rails root
     if client_id.nil? or client_secret.nil?
       require 'yaml' #only if we need it
-      
+
       # if Rails
-        yml_file = YML.load_file(File.join(Rails.root, "config", 'bing_translator.yml' )
+        yml_file = YAML.load_file(File.join(Rails.root, "config", 'bing_translator.yml' ))
       # else
       #   yml_file = YAML.load_file(File.join(File.dirname(__FILE__), '..', 'config', 'bing_translator.yml'))
       # end
