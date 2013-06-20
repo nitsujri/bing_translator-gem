@@ -11,7 +11,6 @@ Bundler.require(:default)
 require_relative 'patches/string'
 
 class BingTranslator
-  include HTTParty
 
   TRANSLATE_URI = 'http://api.microsofttranslator.com/V2/Http.svc/Translate'
   DETECT_URI = 'http://api.microsofttranslator.com/V2/Http.svc/Detect'

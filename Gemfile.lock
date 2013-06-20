@@ -19,9 +19,6 @@ GEM
     guard-rspec (3.0.2)
       guard (>= 1.8)
       rspec (~> 2.13)
-    httparty (0.11.0)
-      multi_json (~> 1.0)
-      multi_xml (>= 0.5.2)
     json (1.7.7)
     listen (1.2.2)
       rb-fsevent (>= 0.9.3)
@@ -29,8 +26,6 @@ GEM
       rb-kqueue (>= 0.2)
     lumberjack (1.0.3)
     method_source (0.8.1)
-    multi_json (1.7.3)
-    multi_xml (0.5.3)
     nokogiri (1.5.9)
     pry (0.9.12)
       coderay (~> 1.0.5)
@@ -61,7 +56,6 @@ DEPENDENCIES
   awesome_print
   fuubar
   guard-rspec
-  httparty
   json (>= 1.7.7, < 1.9)
   nokogiri (~> 1.5.9)
   rspec (~> 2.13.0)
